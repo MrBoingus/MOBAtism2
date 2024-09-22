@@ -6,6 +6,8 @@ class_name TestCharacter
 #region Variables
 var speed : int = 350  ## Default movement speed value.
 
+
+
 # Movement/Navigation
 var direction = Vector3()  ## Used during movement calculation to determine what direction the player should move in.
 var nextPosition = Vector3()  ## The next navigation path position will be stored here.

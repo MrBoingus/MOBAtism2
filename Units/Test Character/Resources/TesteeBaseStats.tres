@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharacterBaseStats" load_steps=2 format=3 uid="uid://cum7swdqtc1et"]
+
+[ext_resource type="Script" path="res://Resources/CharacterBaseStats.gd" id="1_jmqag"]
+
+[resource]
+script = ExtResource("1_jmqag")
+nickname = "Testee"
+characterIndex = 0
+ranged = true
+baseMovementSpeed = 350
+maxLevel = 18
+experiencePerLevel = 50
+baseMaxHealth = 500.0
+healthGrowth = 100.0
+baseHealthRegen = 0.5
+healthRegenGrowth = 0.1
+resource = 0
+baseMaxResource = 300.0
+resourceGrowth = 40.0
+baseResourceRegen = 1.5
+resourceRegenGrowth = 1.0
+basePhysicalReduction = 0
+baseMagicReduction = 0
+baseReduction = 0
+baseAttackRange = 5
+baseAttackDamage = 55
+attackDamageGrowth = 10
+baseAttackSpeed = 0.6
+attackSpeedGrowth = 0.3

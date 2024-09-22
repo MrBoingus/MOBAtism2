@@ -1,0 +1,122 @@
+[gd_scene load_steps=15 format=3 uid="uid://bb2okotlrybrj"]
+
+[ext_resource type="Script" path="res://Code/Scripts/Player/CameraController.gd" id="2_jmafu"]
+[ext_resource type="PackedScene" uid="uid://ba1lre3ooatj" path="res://Scenes/Prefabs/Units/UnitBase.tscn" id="3_oolcx"]
+[ext_resource type="Texture2D" uid="uid://b1oi5xandbl1v" path="res://Assets/League/League_Map.jpg" id="4_66ofm"]
+[ext_resource type="ArrayMesh" uid="uid://r0dtvbyb03tj" path="res://Assets/Other/1MeterCube.obj" id="5_ycmyg"]
+[ext_resource type="PackedScene" uid="uid://dqx540tvks47w" path="res://Assets/League/varus_swiftbolt.glb" id="6_svbpo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4483"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_45dw5"]
+sky_material = SubResource("ProceduralSkyMaterial_f4483")
+
+[sub_resource type="Environment" id="Environment_v6auu"]
+background_mode = 2
+sky = SubResource("Sky_45dw5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g81uy"]
+size = Vector3(199.006, 3, 198.242)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_sfcn2"]
+vertices = PackedVector3Array(-99.5, 0.499994, -2.25, -32.25, 0.499994, -2, -32.25, 0.499994, -3.5, -99.5, 0.499994, -2.25, -32.25, 0.499994, -3.5, -30.5, 0.499994, -3.75, -30.75, 0.499994, -99.5, -99.5, 0.499994, -99.5, -30.5, 0.499994, -3.75, -12.75, 0.499994, -3.75, -12.5, 0.499994, -99.5, -30.75, 0.499994, -99.5, -11, 0.499994, -3.25, 4.25, 0.499994, -4.75, 3.75, 0.499994, -5, -11.25, 0.499994, -3.75, -11, 0.499994, -3.25, 3.75, 0.499994, -5, 3.75, 0.499994, -6.75, 3.75, 0.499994, -6.75, 6, 0.499994, -7, 6, 0.499994, -99.5, -12.75, 0.499994, -3.75, -11.25, 0.499994, -3.75, 3.75, 0.499994, -6.75, 6, 0.499994, -99.5, -12.5, 0.499994, -99.5, 6, 0.499994, -7, 12, 0.499994, -7, 15.5, 0.499994, -9, 6, 0.499994, -7, 15.5, 0.499994, -9, 19, 0.499994, -10.25, 19, 0.499994, -99.5, 6, 0.499994, -99.5, 20, 0.499994, -9.75, 20.25, 0.499994, -8.75, 99.5, 0.499994, -8.75, 19, 0.499994, -10.25, 20, 0.499994, -9.75, 99.5, 0.499994, -8.75, 99.5, 0.499994, -99.5, 19, 0.499994, -99.5, 4.25, 0.499994, -4.75, -11, 0.499994, -3.25, -11, 0.499994, 7.25, 13, 0.499994, -4.75, -11, 0.499994, 7.25, -13.25, 0.499994, 7.5, -13.25, 0.499994, 99.5, 19.75, 0.499994, -8, 13, 0.499994, -4.75, -11, 0.499994, 7.25, -13.25, 0.499994, 99.5, 99.5, 0.499994, 99.5, 99.5, 0.499994, -8.75, 99.5, 0.499994, -8.75, 20.25, 0.499994, -8.75, 19.75, 0.499994, -8, -31.25, 5.49999, -2.75, -31.25, 5.49999, 6.5, -12, 5.49999, 6.5, -12, 5.49999, -2.75, -31, 0.499994, -2.5, -31, 0.499994, 6.25, -12.25, 0.499994, 6.25, -12.25, 0.499994, -2.5, -99.5, 0.499994, 6, -32.25, 0.499994, 5.75, -32.25, 0.499994, -2, -99.5, 0.499994, -2.25, -32, 0.499994, 7.5, -32.25, 0.499994, 5.75, -99.5, 0.499994, 6, -99.5, 0.499994, 99.5, -30, 0.499994, 99.5, -30, 0.499994, 99.5, -30, 0.499994, 7.5, -32, 0.499994, 7.5, -30, 0.499994, 99.5, -13.25, 0.499994, 99.5, -13.25, 0.499994, 7.5, -30, 0.499994, 7.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 26), PackedInt32Array(24, 26, 25), PackedInt32Array(29, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(33, 30, 34), PackedInt32Array(37, 36, 35), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 42), PackedInt32Array(40, 42, 41), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(49, 48, 47), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 55), PackedInt32Array(52, 55, 53), PackedInt32Array(53, 55, 54), PackedInt32Array(58, 57, 56), PackedInt32Array(62, 61, 59), PackedInt32Array(59, 61, 60), PackedInt32Array(66, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 70), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 74), PackedInt32Array(74, 71, 75), PackedInt32Array(78, 77, 76), PackedInt32Array(82, 81, 79), PackedInt32Array(79, 81, 80)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_frtwe"]
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1wqo"]
+albedo_texture = ExtResource("4_66ofm")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xys2x"]
+size = Vector3(8, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g3lmk"]
+size = Vector3(20, 5, 10)
+
+[node name="Main" type="Node3D"]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1552, 2.00002, -105.198)
+
+[node name="1MeterCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57471, -9.53674e-07, 0.0616956)
+mesh = ExtResource("5_ycmyg")
+
+[node name="SkinnedMesh" parent="." instance=ExtResource("6_svbpo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18418, 2.38419e-07, -0.155878)
+
+[node name="Units" type="Node" parent="."]
+
+[node name="Unit_player" parent="Units" instance=ExtResource("3_oolcx")]
+
+[node name="Unit_enemy" parent="Units" instance=ExtResource("3_oolcx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26254, 0, 0)
+
+[node name="World" type="Node" parent="."]
+
+[node name="Environment" type="Node3D" parent="World"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World/Environment"]
+environment = SubResource("Environment_v6auu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 370.465, -2.55844)
+light_color = Color(0.945098, 0.886275, 0.890196, 1)
+light_energy = 2.0
+light_indirect_energy = 3.0
+shadow_enabled = true
+shadow_opacity = 0.4
+shadow_blur = 0.0
+
+[node name="Floor" type="Area3D" parent="World"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collision Box" type="CollisionShape3D" parent="World/Floor"]
+shape = SubResource("BoxShape3D_g81uy")
+
+[node name="Navigation Mesh" type="NavigationRegion3D" parent="World/Floor"]
+navigation_mesh = SubResource("NavigationMesh_sfcn2")
+
+[node name="floor_plane" type="MeshInstance3D" parent="World/Floor/Navigation Mesh"]
+mesh = SubResource("PlaneMesh_frtwe")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_e1wqo")
+
+[node name="Walls" type="Node" parent="World/Floor/Navigation Mesh"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Floor/Navigation Mesh/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.40917, 2.5, -5.95225)
+mesh = SubResource("BoxMesh_xys2x")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="World/Floor/Navigation Mesh/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.645, 2.49999, 1.77876)
+mesh = SubResource("BoxMesh_g3lmk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Floor/Navigation Mesh/Walls"]
+transform = Transform3D(0.903687, 0, 0.428194, 0, 1, 0, -0.428194, 0, 0.903687, 15.6959, 2.5, -7.56056)
+mesh = SubResource("BoxMesh_xys2x")
+skeleton = NodePath("../..")
+
+[node name="Players" type="Node" parent="."]
+
+[node name="CameraControl" type="Node3D" parent="Players" node_paths=PackedStringArray("pairedUnit")]
+script = ExtResource("2_jmafu")
+pairedUnit = NodePath("../../Units/Unit_player")
+
+[node name="Socket" type="Node3D" parent="Players/CameraControl"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Players/CameraControl/Socket" groups=["Camera"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+current = true
+fov = 45.0

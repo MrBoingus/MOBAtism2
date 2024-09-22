@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bb2okotlrybrj"]
+
+[ext_resource type="Script" path="res://Code/Scripts/Player/CameraController.gd" id="2_jmafu"]
+[ext_resource type="Texture2D" uid="uid://b1oi5xandbl1v" path="res://Assets/League/League_Map.jpg" id="4_66ofm"]
+[ext_resource type="ArrayMesh" uid="uid://r0dtvbyb03tj" path="res://Assets/Other/1MeterCube.obj" id="5_ycmyg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4483"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_45dw5"]
+sky_material = SubResource("ProceduralSkyMaterial_f4483")
+
+[sub_resource type="Environment" id="Environment_v6auu"]
+background_mode = 2
+sky = SubResource("Sky_45dw5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g81uy"]
+size = Vector3(200, 0.1, 200)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_frtwe"]
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1wqo"]
+albedo_texture = ExtResource("4_66ofm")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xys2x"]
+size = Vector3(8, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g3lmk"]
+size = Vector3(20, 5, 10)
+
+[node name="Main" type="Node3D"]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1552, 2.00002, -105.198)
+
+[node name="1MeterCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57471, -9.53674e-07, 0.0616956)
+mesh = ExtResource("5_ycmyg")
+
+[node name="Units" type="Node" parent="."]
+
+[node name="World" type="Node" parent="."]
+
+[node name="Environment" type="Node3D" parent="World"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World/Environment"]
+environment = SubResource("Environment_v6auu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 370.465, -2.55844)
+light_color = Color(0.945098, 0.886275, 0.890196, 1)
+light_energy = 2.0
+light_indirect_energy = 3.0
+shadow_enabled = true
+shadow_opacity = 0.4
+shadow_blur = 0.0
+
+[node name="Floor" type="Area3D" parent="World"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collision Box" type="CollisionShape3D" parent="World/Floor"]
+shape = SubResource("BoxShape3D_g81uy")
+
+[node name="Navigation Mesh" type="NavigationRegion3D" parent="World/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.450778, 0)
+
+[node name="floor_plane" type="MeshInstance3D" parent="World/Floor/Navigation Mesh"]
+mesh = SubResource("PlaneMesh_frtwe")
+surface_material_override/0 = SubResource("StandardMaterial3D_e1wqo")
+
+[node name="Walls" type="Node" parent="World/Floor/Navigation Mesh"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Floor/Navigation Mesh/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.40917, 2.5, -5.95225)
+mesh = SubResource("BoxMesh_xys2x")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="World/Floor/Navigation Mesh/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.645, 2.49999, 1.77876)
+mesh = SubResource("BoxMesh_g3lmk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Floor/Navigation Mesh/Walls"]
+transform = Transform3D(0.903687, 0, 0.428194, 0, 1, 0, -0.428194, 0, 0.903687, 15.6959, 2.5, -7.56056)
+mesh = SubResource("BoxMesh_xys2x")
+skeleton = NodePath("../..")
+
+[node name="Players" type="Node" parent="."]
+
+[node name="CameraControl" type="Node3D" parent="Players" node_paths=PackedStringArray("pairedUnit")]
+script = ExtResource("2_jmafu")
+pairedUnit = NodePath("")
+
+[node name="Socket" type="Node3D" parent="Players/CameraControl"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Players/CameraControl/Socket" groups=["Camera"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+current = true
+fov = 45.0

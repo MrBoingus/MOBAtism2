@@ -8,6 +8,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cghc2"]
 
 [node name="Dummy" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_xu1bv")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

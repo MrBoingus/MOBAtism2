@@ -21,7 +21,6 @@ enum resourceType {
 	NONE
 }
 
-
 enum statusEffectType {
 	STATUS,
 	BUFF,

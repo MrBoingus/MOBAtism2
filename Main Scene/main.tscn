@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bb2okotlrybrj"]
+[gd_scene load_steps=26 format=4 uid="uid://bb2okotlrybrj"]
 
 [ext_resource type="Script" path="res://Main Scene/main.gd" id="1_3nylv"]
 [ext_resource type="Script" path="res://Main Scene/CameraController.gd" id="2_jmafu"]
@@ -85,6 +85,9 @@ size = Vector3(10, 10, 10)
 top_radius = 4.0
 bottom_radius = 4.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_csgin"]
+radius = 5.0
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_3nylv")
 
@@ -121,8 +124,8 @@ shadow_opacity = 0.4
 shadow_blur = 0.0
 
 [node name="Map" type="Area3D" parent="World"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 0
 
 [node name="Collision Box" type="CollisionShape3D" parent="World/Map"]
 shape = SubResource("BoxShape3D_g81uy")
@@ -249,6 +252,13 @@ mesh = SubResource("CylinderMesh_xve6d")
 [node name="CameraControl" type="Node3D" parent="Players" node_paths=PackedStringArray("pairedUnit")]
 script = ExtResource("2_jmafu")
 pairedUnit = NodePath("../../Units/CharacterBody3D")
+
+[node name="AttackArea" type="Area3D" parent="Players/CameraControl"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Players/CameraControl/AttackArea"]
+shape = SubResource("SphereShape3D_csgin")
 
 [node name="Socket" type="Node3D" parent="Players/CameraControl"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)

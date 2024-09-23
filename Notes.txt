@@ -1,2 +1,3 @@
 Currently working on:
-	Dummy?
+	Dummy.
+	Just added an attack search function when A is pressed.

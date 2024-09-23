@@ -26,6 +26,10 @@ run/main_scene="res://Main Scene/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Layers="*res://Globals/Layers.gd"
+
 [display]
 
 window/size/viewport_width=2560
@@ -113,9 +117,10 @@ debug={
 
 [layer_names]
 
-3d_physics/layer_1="Player"
-3d_physics/layer_2="Floor"
-3d_physics/layer_3="Targetable"
+3d_physics/layer_1="Team 1 Player"
+3d_physics/layer_2="Team 2 Player"
+3d_physics/layer_3="Neutral"
+3d_physics/layer_4="Floor"
 
 [navigation]
 

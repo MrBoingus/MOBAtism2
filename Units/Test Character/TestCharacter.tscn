@@ -1,18 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://htnbw4b1jil0"]
+[gd_scene load_steps=8 format=3 uid="uid://htnbw4b1jil0"]
 
 [ext_resource type="Script" path="res://Units/Test Character/TestCharacter.gd" id="1_v6xjs"]
 [ext_resource type="Texture2D" uid="uid://dag6xo83vqfhe" path="res://icon.svg" id="2_3adnv"]
 [ext_resource type="Resource" uid="uid://cum7swdqtc1et" path="res://Units/Test Character/Resources/TesteeBaseStats.tres" id="2_rm1jp"]
 [ext_resource type="Resource" uid="uid://ciamosma14l74" path="res://Units/Test Character/Resources/TesteeStatContainer.tres" id="3_q00ex"]
+[ext_resource type="Script" path="res://Units/Test Character/attack_handler.gd" id="4_l2doe"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mnwy1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ye3ra"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+collision_mask = 0
 script = ExtResource("1_v6xjs")
 baseStats = ExtResource("2_rm1jp")
 stats = ExtResource("3_q00ex")
+
+[node name="AttackHandler" type="Node" parent="."]
+script = ExtResource("4_l2doe")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.1

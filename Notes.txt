@@ -1,3 +1,2 @@
 Currently working on:
-	Dummy.
-	Just added an attack search function when A is pressed.
+	Attack Move is now working!

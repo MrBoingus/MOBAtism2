@@ -69,7 +69,7 @@ func _input(event: InputEvent) -> void:
 		GetCameraCollision()
 		
 	if event.is_action_pressed("attackMove"):
-		GetAttackCollision()
+		AttackMoveLogic()
 		
 	# camera Lock
 	if event.is_action_pressed("cameraLock"):
@@ -162,7 +162,7 @@ func GetCameraCollision():
 	else:
 		print_debug("No intersection")
 
-func GetAttackCollision():
+func AttackMoveLogic():
 	var mousePosition = get_viewport().get_mouse_position()
 	
 	var rayOrigin = camera.project_ray_origin(mousePosition)
@@ -185,29 +185,51 @@ func GetAttackCollision():
 	else:
 		attackArea.global_position = rayWorld.position # For debugging
 		
-		# Define the attack area
-		var shapeCast = ShapeCast3D.new()
-		var newShape = SphereShape3D.new()
-		newShape.radius = pairedUnit.baseStats.baseAttackRange
-		shapeCast.shape = newShape
+		var shapeCast = CreateAttackArea(rayWorld)
 		
-		# Instantiate the attack area
-		add_child(shapeCast)
-		shapeCast.global_position = rayWorld.position
+		# Check if an enemy was found around the player's MOUSE.
+		if !AttackAreaColliding(shapeCast, 2):
+			attackArea.global_position = rayWorld.position # For debugging
+			
+			# If not, check if an enemy is around the PLAYER.
+			shapeCast.global_position = pairedUnit.global_position
+			if !AttackAreaColliding(shapeCast, 2):
+				# If still no enemy found, move player and set them to SEARCH MODE.
+				shapeCast.queue_free()
+				
+				pairedUnit.nav.target_position = rayWorld.position
+				pairedUnit.wantsToMove = true
+			
+
+func CreateAttackArea(rayWorld):
+	# Define the attack area
+	var shapeCast = ShapeCast3D.new()
+	var newShape = SphereShape3D.new()
+	newShape.radius = pairedUnit.baseStats.baseAttackRange
+	shapeCast.shape = newShape
+	
+	# Instantiate the attack area
+	add_child(shapeCast)
+	shapeCast.global_position = rayWorld.position
+	shapeCast.force_update_transform()
+	
+	return shapeCast
+
+func AttackAreaColliding(shapeCast, layer):
+	shapeCast.set_collision_mask(pow(2, layer - 1))
+	shapeCast.force_shapecast_update()
+	
+	if shapeCast.collision_result:
+		print("found enemy through area")
 		
-		# Update the attack area to detect collisions
-		shapeCast.set_collision_mask(layer)
-		shapeCast.force_shapecast_update()
-		var enemy
-		# vv Returns data about NEAREST area vv
-		if shapeCast.collision_result: enemy = shapeCast.collision_result[0]
-		
+		var enemy = shapeCast.collision_result[0]
+		pairedUnit.nav.target_position = enemy.collider.global_position
+		pairedUnit.wantsToMove = true
+	
 		shapeCast.queue_free()
 		
-		# Handle collisions, if any.
-		if enemy:
-			print("found enemy through area")
-			pairedUnit.nav.target_position = enemy.collider.global_position
-			pairedUnit.wantsToMove = true
-		else:
-			print("didn't hit any enemies")
+		return true
+	else:
+		print("didn't hit any enemies")
+		
+		return false

@@ -159,6 +159,7 @@ func GetCameraCollision():
 		print_debug("hit the ground")
 		pairedUnit.nav.target_position = rayWorld.position
 		pairedUnit.wantsToMove = true
+		pairedUnit.searching = false
 	else:
 		print_debug("No intersection")
 
@@ -199,6 +200,7 @@ func AttackMoveLogic():
 				
 				pairedUnit.nav.target_position = rayWorld.position
 				pairedUnit.wantsToMove = true
+				pairedUnit.searching = true
 			
 
 func CreateAttackArea(rayWorld):

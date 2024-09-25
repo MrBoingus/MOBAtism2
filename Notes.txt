@@ -1,2 +1,2 @@
 Currently working on:
-	Attack Move is now working!
+	Add player SEARCH state.

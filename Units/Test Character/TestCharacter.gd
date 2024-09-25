@@ -14,11 +14,14 @@ var nextPosition = Vector3()  ## The next navigation path position will be store
 var wantsToMove : bool = false  ## Whether or not this character is currently attempting to move to another location.
 
 # Flags
+var searching : bool
 
 #endregion
 
 #region Nodes
 @onready var nav: NavigationAgent3D = $NavigationAgent3D  ## This characters NavigationAgent node.
+
+
 
 #endregion
 
@@ -38,6 +41,12 @@ func ConnectNavSignals():
 	nav.path_changed.connect(PathChanged)
 	nav.navigation_finished.connect(NavigationFinished)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("stop"):
+		searching = false
+		wantsToMove = false
+		nav.target_position = global_position
+
 func _physics_process(delta: float) -> void:
 	# IMPORTANT: "GET_NEXT_PATH_POSITION" IS INTEGRAL TO NAVIGATION.
 	# The navigation path wont be loaded until it is called at least once, AND Godot says it should be called every frame to keep it updated.
@@ -51,6 +60,8 @@ func _physics_process(delta: float) -> void:
 # TODO Tre mentioned this in the last project but Godot only allows for 0.1m precision in navigation, for some reason. Code our own LATER?
 func NavigationLogic(delta ):
 	if wantsToMove:
+		# Check for enemies around you
+		if searching: SearchForEnemy()
 		# Determine next position, its direction relative to us, and move towards it.
 		direction = global_position.direction_to(nextPosition)
 		velocity = direction * delta * speed
@@ -86,6 +97,27 @@ func ApplyStats():
 	stats.attackSpeed = baseStats.baseAttackSpeed
 
 #endregion
+
+func SearchForEnemy():
+	var enemyLayer = 2
+	
+	var shapeCast = ShapeCast3D.new()
+	var newShape = SphereShape3D.new()
+	newShape.radius = baseStats.baseAttackRange
+	shapeCast.shape = newShape
+	
+	add_child(shapeCast)
+	
+	shapeCast.set_collision_mask(pow(2, enemyLayer - 1))
+	shapeCast.force_shapecast_update()
+	
+	if shapeCast.collision_result:
+		var enemy = shapeCast.collision_result[0]
+		nav.target_position = enemy.collider.global_position
+		wantsToMove = true
+		
+		shapeCast.queue_free()
+	
 
 #region Connections To External Functions
 # NOTE: It seems that when avoidance is enabled, velocity_computed is constantly emitted, EVEN WITHOUT A PATH BEING LOADED.

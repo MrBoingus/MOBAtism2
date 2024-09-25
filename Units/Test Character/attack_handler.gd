@@ -3,6 +3,5 @@ class_name TesteeAttackHandler
 
 @onready var player : TestCharacter
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attackMove"):
-		pass
+func DeclareAttack(_creator, _victim, _attack):
+	print("got his ass")

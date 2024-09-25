@@ -160,6 +160,7 @@ func GetCameraCollision():
 		pairedUnit.nav.target_position = rayWorld.position
 		pairedUnit.wantsToMove = true
 		pairedUnit.searching = false
+		pairedUnit.target = null
 	else:
 		print_debug("No intersection")
 
@@ -227,6 +228,8 @@ func AttackAreaColliding(shapeCast, layer):
 		var enemy = shapeCast.collision_result[0]
 		pairedUnit.nav.target_position = enemy.collider.global_position
 		pairedUnit.wantsToMove = true
+		pairedUnit.target = enemy.collider
+		pairedUnit.searching = false
 	
 		shapeCast.queue_free()
 		

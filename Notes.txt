@@ -1,2 +1,3 @@
 Currently working on:
-	Add player SEARCH state.
+	added basic attack animation
+	made character stop and play this animation if in range of enemy

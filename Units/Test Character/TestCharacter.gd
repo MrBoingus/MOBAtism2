@@ -11,7 +11,7 @@ var target : Dummy
 # Movement/Navigation
 var direction = Vector3()  ## Used during movement calculation to determine what direction the player should move in.
 var nextPosition = Vector3()  ## The next navigation path position will be stored here.
-var wantsToMove : bool = false  ## Whether or not this character is currently attempting to move to another location.
+@export var wantsToMove : bool = false  ## Whether or not this character is currently attempting to move to another location.
 
 # Flags
 var searching : bool
@@ -20,6 +20,8 @@ var searching : bool
 
 #region Nodes
 @onready var nav: NavigationAgent3D = $NavigationAgent3D  ## This characters NavigationAgent node.
+@onready var animation: AnimationPlayer = $AnimationPlayer
+
 
 
 
@@ -49,7 +51,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	# IMPORTANT: "GET_NEXT_PATH_POSITION" IS INTEGRAL TO NAVIGATION.
-	# The navigation path wont be loaded until it is called at least once, AND Godot says it should be called every frame to keep it updated.
+	# The navigation path wont be loaded until it is called at least once,
+	# AND Godot says it should be called every frame to keep it updated.
 	nextPosition = nav.get_next_path_position()
 	
 	NavigationLogic(delta)
@@ -59,9 +62,13 @@ func _physics_process(delta: float) -> void:
 ## Basic Navigation and Movement logic meant to run every physics frame.
 # TODO Tre mentioned this in the last project but Godot only allows for 0.1m precision in navigation, for some reason. Code our own LATER?
 func NavigationLogic(delta ):
+	
+	# Check for enemies around you
+	if searching: SearchForEnemy()
+	
+	if target: FollowTarget()
+	
 	if wantsToMove:
-		# Check for enemies around you
-		if searching: SearchForEnemy()
 		# Determine next position, its direction relative to us, and move towards it.
 		direction = global_position.direction_to(nextPosition)
 		velocity = direction * delta * speed
@@ -98,6 +105,9 @@ func ApplyStats():
 
 #endregion
 
+# NOTE: Right now, this also serves to check if the enemy is in-range to attack.
+# if we make the characters attack search range different from their attack range,
+# this will change.
 func SearchForEnemy():
 	var enemyLayer = 2
 	
@@ -113,14 +123,26 @@ func SearchForEnemy():
 	
 	if shapeCast.collision_result:
 		var enemy = shapeCast.collision_result[0]
+		
 		nav.target_position = enemy.collider.global_position
 		wantsToMove = true
+		
+		target = enemy.collider
+		searching = false
 		
 		shapeCast.queue_free()
 	
 
+func FollowTarget():
+	if global_position.distance_to(target.global_position) > baseStats.baseAttackRange:
+		nav.target_position = target.global_position
+		wantsToMove = true
+	else:
+		animation.play("BasicAttack")
+
 #region Connections To External Functions
-# NOTE: It seems that when avoidance is enabled, velocity_computed is constantly emitted, EVEN WITHOUT A PATH BEING LOADED.
+# NOTE: It seems that when avoidance is enabled, velocity_computed is constantly emitted,
+# EVEN WITHOUT A PATH BEING LOADED.
 
 func PathChanged():
 	print("path changed called")

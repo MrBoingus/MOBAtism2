@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Character
 class_name TestCharacter
 ## The current default test character. For testing purposes. His name will be Testee.
 ## The front of this character is the negative Z-axis.
@@ -61,14 +61,15 @@ func _physics_process(delta: float) -> void:
 
 ## Basic Navigation and Movement logic meant to run every physics frame.
 # TODO Tre mentioned this in the last project but Godot only allows for 0.1m precision in navigation, for some reason. Code our own LATER?
-func NavigationLogic(delta ):
-	
+func NavigationLogic(delta : float):
 	# Check for enemies around you
 	if searching: SearchForEnemy()
 	
 	if target: FollowTarget()
+	else: animation.play("Idle")
 	
 	if wantsToMove:
+		
 		# Determine next position, its direction relative to us, and move towards it.
 		direction = global_position.direction_to(nextPosition)
 		velocity = direction * delta * speed
@@ -124,10 +125,10 @@ func SearchForEnemy():
 	if shapeCast.collision_result:
 		var enemy = shapeCast.collision_result[0]
 		
-		nav.target_position = enemy.collider.global_position
-		wantsToMove = true
+		#nav.target_position = enemy.collider.global_position
 		
 		target = enemy.collider
+		wantsToMove = true
 		searching = false
 		
 		shapeCast.queue_free()
@@ -138,7 +139,25 @@ func FollowTarget():
 		nav.target_position = target.global_position
 		wantsToMove = true
 	else:
+		#nav.target_position = target.global_position
+		look_at(target.global_position)
+		rotation.x = 0
+		rotation.z = 0
 		animation.play("BasicAttack")
+
+func ReceiveExperience(value):
+	if stats.experience + value >= stats.requiredExperience:
+		IncreaseLevel()
+	else:
+		print("got xp but didnt level up")
+		stats.experience += value
+
+func IncreaseLevel():
+	if stats.currentLevel + 1 > baseStats.maxLevel:
+		pass
+	else:
+		stats.experience = 0
+		print_debug("leveled up!")
 
 #region Connections To External Functions
 # NOTE: It seems that when avoidance is enabled, velocity_computed is constantly emitted,

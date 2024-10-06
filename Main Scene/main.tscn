@@ -9,14 +9,14 @@
 [sub_resource type="ArrayMesh" id="ArrayMesh_sjv4y"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 1.00001, 1.00001),
-"attribute_data": PackedByteArray("/5////9f////n/+//1//v/+f/7//X/+//5//f/9f/3//n/9//1//f/+f/z//X/8//5//P/9f/z//nwAA/18AAP9f/3//H/9//1//P/8f/z//3/9//5//f//f/z//n/8/"),
+"attribute_data": PackedByteArray("ub3GALi9xQC3vsQAuL3FALi+xAC4vcUAuL7FALm9xQC4vcUAubzGALi9xQC3vsQAuL3FALi+xAC4vcUAuL3FALm9xQC4vcUAubzGALi9xQC3vsQAuL3FALi+xAC4vcUA"),
 "format": 34896613399,
 "index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcA"),
+"index_data": PackedByteArray("ub3GALi9xQC3vsQAuL3FALi+xAC4vcUAuL7FALm9xQC4vcUAubzGALi9xQC3vsQAuL3FALi+xAC4vcUAuL3FALm9xQC4vcUA"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("AAD+//7/VNUAAAAA/v9U1QAA/v8AAFTVAAAAAAAAVNUAAP7/AAD//wAAAAAAAP/////+/wAA/////wAAAAD//////v8AAFTV//8AAAAAVNX///7//v9U1f//AAD+/1TV///+//7//7///wAA/v//vwAA/v/+//+/AAAAAP7//7///wAAAAD/vwAAAAAAAP+///8AAP7//78AAAAA/v//vwAA/v8AAP/////+/wAA//8AAP7//v///////v/+////VNVU1VTVVNVU1VTVVNVU1f+//7//v/+//7//v/+//7+qKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/3//f/+//3//v/9//7//f/+/")
+"vertex_data": PackedByteArray("ub3GALi9xQC3vsQAuL3FALi+xAC4vcUAuL7FALm9xQC4vcUAubzGALi9xQC3vsQAuL3FALi+xAC4vcUAuL3FALm9xQC4vcUAubzGALi9xQC3vsQAuL3FALi+xAC4vcUAuL3FALm9xQC4vcUAubzFALi9xQC3vsQAuL3FALe+xAC4vcUAuL3FALm8xQC4vcUAubzFALi9xQC3vsQAuL3FALe+xAC4vcUAuL3FALm8xQC4vcUAubzGALi9xQC3vsQAuL3FALe9xAC4vcUAuL3FALm8xQC4vcUAubzFALi9xQC3vsQAuL3FALe9xAC4vcUAuL3FALm8xQC4vcUAt77EALi9xQC3vsQAuL3FALe9xAC4vMUAuL3FALm8xQC4vcUA")
 }]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4483"]

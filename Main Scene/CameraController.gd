@@ -182,8 +182,10 @@ func AttackMoveLogic():
 	
 	if rayAttack:
 		print_debug("directly hit an enemy, " + rayAttack.collider.name)
-		pairedUnit.nav.target_position = rayAttack.collider.global_position
-		pairedUnit.wantsToMove = true
+		#pairedUnit.nav.target_position = rayAttack.collider.global_position
+		pairedUnit.target = rayAttack.collider
+		#pairedUnit.wantsToMove = true
+		pairedUnit.searching = false
 	else:
 		attackArea.global_position = rayWorld.position # For debugging
 		
@@ -226,9 +228,9 @@ func AttackAreaColliding(shapeCast, layer):
 		print("found enemy through area")
 		
 		var enemy = shapeCast.collision_result[0]
-		pairedUnit.nav.target_position = enemy.collider.global_position
-		pairedUnit.wantsToMove = true
+		#pairedUnit.nav.target_position = enemy.collider.global_position
 		pairedUnit.target = enemy.collider
+		#pairedUnit.wantsToMove = true
 		pairedUnit.searching = false
 	
 		shapeCast.queue_free()

@@ -1,3 +1,2 @@
 Currently working on:
-	added basic attack animation
-	made character stop and play this animation if in range of enemy
+	Continuing work on basic attack

@@ -12,6 +12,7 @@ var target : Dummy
 var direction = Vector3()  ## Used during movement calculation to determine what direction the player should move in.
 var nextPosition = Vector3()  ## The next navigation path position will be stored here.
 @export var wantsToMove : bool = false  ## Whether or not this character is currently attempting to move to another location.
+@export var canMove : bool = true
 
 # Flags
 var searching : bool
@@ -21,8 +22,7 @@ var searching : bool
 #region Nodes
 @onready var nav: NavigationAgent3D = $NavigationAgent3D  ## This characters NavigationAgent node.
 @onready var animation: AnimationPlayer = $AnimationPlayer
-
-
+@onready var attackHandler: TesteeAttackHandler = $AttackHandler
 
 
 #endregion
@@ -68,7 +68,7 @@ func NavigationLogic(delta : float):
 	if target: FollowTarget()
 	else: animation.play("Idle")
 	
-	if wantsToMove:
+	if wantsToMove and canMove:
 		
 		# Determine next position, its direction relative to us, and move towards it.
 		direction = global_position.direction_to(nextPosition)
@@ -132,18 +132,21 @@ func SearchForEnemy():
 		searching = false
 		
 		shapeCast.queue_free()
-	
 
 func FollowTarget():
 	if global_position.distance_to(target.global_position) > baseStats.baseAttackRange:
 		nav.target_position = target.global_position
 		wantsToMove = true
 	else:
+		wantsToMove = false
 		#nav.target_position = target.global_position
 		look_at(target.global_position)
 		rotation.x = 0
 		rotation.z = 0
-		animation.play("BasicAttack")
+		if attackHandler.attackTimer.time_left > 0.0:
+			pass
+		else:
+			animation.play("BasicAttack")
 
 func ReceiveExperience(value):
 	if stats.experience + value >= stats.requiredExperience:

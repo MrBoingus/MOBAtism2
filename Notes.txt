@@ -1,2 +1,7 @@
 Currently working on:
-	Continuing work on basic attack
+	Adding Basic Attack Timer
+
+NOTE: Characters in League with an identical search radius and
+attack range will sometimes target enemies slightly outside of their
+search radius because every character has a selection radius that can
+make them larger than their model appears.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://htnbw4b1jil0"]
+[gd_scene load_steps=15 format=3 uid="uid://htnbw4b1jil0"]
 
 [ext_resource type="Script" path="res://Units/Test Character/TestCharacter.gd" id="1_v6xjs"]
 [ext_resource type="Texture2D" uid="uid://dag6xo83vqfhe" path="res://icon.svg" id="2_3adnv"]
@@ -44,7 +44,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath(".:wantsToMove")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -53,6 +53,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D:surface_material_override/0:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0833335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.938887, 0.276652, 0.372991, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_t0nf5"]
@@ -74,6 +86,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.938887, 0.276652, 0.372991, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s5l1e"]
 _data = {
@@ -83,6 +107,9 @@ _data = {
 }
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ye3ra"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0jke"]
+albedo_color = Color(0.938887, 0.276652, 0.372991, 1)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 0
@@ -101,6 +128,9 @@ shape = SubResource("CapsuleShape3D_mnwy1")
 [node name="AttackHandler" type="Node" parent="."]
 script = ExtResource("4_l2doe")
 
+[node name="BasicAttackTimer" type="Timer" parent="AttackHandler"]
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_s5l1e")
@@ -109,6 +139,7 @@ libraries = {
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978703, 0)
 mesh = SubResource("CapsuleMesh_ye3ra")
+surface_material_override/0 = SubResource("StandardMaterial3D_k0jke")
 
 [node name="Face" type="Sprite3D" parent="MeshInstance3D"]
 transform = Transform3D(0.38482, 0, 0, 0, 0.38482, 0, 0, 0, 0.38482, 0, 0.6, -0.500487)

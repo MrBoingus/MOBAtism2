@@ -25,5 +25,5 @@ baseReduction = 0
 baseAttackRange = 5
 baseAttackDamage = 55
 attackDamageGrowth = 10
-baseAttackSpeed = 0.6
+baseAttackSpeed = 0.7
 attackSpeedGrowth = 0.3

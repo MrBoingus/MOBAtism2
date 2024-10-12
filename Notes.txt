@@ -1,7 +1,10 @@
 Currently working on:
-	Adding Basic Attack Timer
+	Selection Radius?
+
+*moved player collision box cause it was the ground for some reason.
+will see if this causes problems.
 
 NOTE: Characters in League with an identical search radius and
 attack range will sometimes target enemies slightly outside of their
-search radius because every character has a selection radius that can
-make them larger than their model appears.
+attack radius because every character has a selection hitbox of sorts
+that can make them larger than their model appears.

@@ -268,3 +268,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 current = true
 fov = 45.0
+
+[node name="Timer" type="Timer" parent="Players/CameraControl"]
+wait_time = 0.08
+one_shot = true
+
+[connection signal="timeout" from="Players/CameraControl/Timer" to="Players/CameraControl" method="_on_timer_timeout"]

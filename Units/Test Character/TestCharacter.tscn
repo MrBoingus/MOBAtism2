@@ -123,6 +123,7 @@ target_desired_distance = 0.2
 debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986698, 0)
 shape = SubResource("CapsuleShape3D_mnwy1")
 
 [node name="AttackHandler" type="Node" parent="."]

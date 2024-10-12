@@ -4,6 +4,7 @@ class_name CameraController
 
 @export var pairedUnit: TestCharacter ## The in-game unit this camera is set to follow.
 @onready var attackArea: CollisionShape3D = $AttackArea/CollisionShape3D
+@onready var timer : Timer = $Timer
 
 
 @export_category("Variables")
@@ -165,6 +166,9 @@ func GetCameraCollision():
 		print_debug("No intersection")
 
 func AttackMoveLogic():
+	Input.set_default_cursor_shape(Input.CURSOR_FORBIDDEN)
+	timer.start()
+	
 	var mousePosition = get_viewport().get_mouse_position()
 	
 	var rayOrigin = camera.project_ray_origin(mousePosition)
@@ -204,7 +208,7 @@ func AttackMoveLogic():
 				pairedUnit.nav.target_position = rayWorld.position
 				pairedUnit.wantsToMove = true
 				pairedUnit.searching = true
-			
+				
 
 func CreateAttackArea(rayWorld):
 	# Define the attack area
@@ -240,3 +244,7 @@ func AttackAreaColliding(shapeCast, layer):
 		print("didn't hit any enemies")
 		
 		return false
+
+
+func _on_timer_timeout() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

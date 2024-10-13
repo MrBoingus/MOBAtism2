@@ -60,10 +60,10 @@ func frame_update_enter():
 	pass
 	
 func frame_update_physics():
-	if player.hitPause:
-		pass
-	else:
-		player.stateDuration += 1
+	#if player.hitPause:
+		#pass
+	#else:
+	player.stateDuration += 1
 	
 func frame_update_exit():
 	player.stateDuration = 0

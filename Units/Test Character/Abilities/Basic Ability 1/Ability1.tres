@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://dd612ft8u18mp"]
+
+[ext_resource type="Script" path="res://Resources/Hitbox.gd" id="1_oonsa"]
+[ext_resource type="Script" path="res://Resources/Ability.gd" id="2_8unut"]
+
+[resource]
+script = ExtResource("2_8unut")
+name = "Ability1"
+hitboxes = Array[ExtResource("1_oonsa")]([])

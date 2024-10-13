@@ -156,7 +156,14 @@ func GetCameraCollision():
 	ray.set_collision_mask(pow(2, layer - 1))
 	var rayWorld = get_world_3d().direct_space_state.intersect_ray(ray)
 	
-	if rayWorld:
+	layer = 2
+	ray.set_collision_mask(pow(2, layer - 1))
+	var rayAttack = get_world_3d().direct_space_state.intersect_ray(ray)
+	
+	if rayAttack:
+		pairedUnit.target = rayAttack.collider
+		pairedUnit.searching = false
+	elif rayWorld:
 		print_debug("hit the ground")
 		pairedUnit.nav.target_position = rayWorld.position
 		pairedUnit.wantsToMove = true

@@ -8,11 +8,16 @@ var speed : int = 350  ## Default movement speed value.
 
 var target : Dummy
 
+var stateDuration
+var previousState
+var currentState
+
 # Movement/Navigation
 var direction = Vector3()  ## Used during movement calculation to determine what direction the player should move in.
 var nextPosition = Vector3()  ## The next navigation path position will be stored here.
 @export var wantsToMove : bool = false  ## Whether or not this character is currently attempting to move to another location.
 @export var canMove : bool = true
+@export var canAttack : bool = true
 
 # Flags
 var searching : bool
@@ -22,7 +27,10 @@ var searching : bool
 #region Nodes
 @onready var nav: NavigationAgent3D = $NavigationAgent3D  ## This characters NavigationAgent node.
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var attackHandler: TesteeAttackHandler = $AttackHandler
+@onready var attackHandler: TesteeAttackHandler = %AttackHandler
+@onready var statusEffectHandler: TesteeStatusEffectHandler = %StatusEffectHandler
+@onready var abilityHandler: TesteeAbilityHandler = %AbilityHandler
+@onready var stateMachine: TesteeStateMachine = %StateMachine
 
 
 #endregion
@@ -30,7 +38,7 @@ var searching : bool
 #region Resources
 @export var baseStats : CharacterBaseStats
 @export var stats : CharacterStatContainer
-@export var statusEffectHandler : StatusEffectHandler
+@export var abilityArray : Array[Ability]
 
 #endregion
 

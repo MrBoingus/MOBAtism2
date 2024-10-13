@@ -1,12 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://htnbw4b1jil0"]
+[gd_scene load_steps=20 format=3 uid="uid://htnbw4b1jil0"]
 
 [ext_resource type="Script" path="res://Units/Test Character/TestCharacter.gd" id="1_v6xjs"]
 [ext_resource type="Texture2D" uid="uid://dag6xo83vqfhe" path="res://icon.svg" id="2_3adnv"]
 [ext_resource type="Resource" uid="uid://cum7swdqtc1et" path="res://Units/Test Character/Resources/TesteeBaseStats.tres" id="2_rm1jp"]
 [ext_resource type="Resource" uid="uid://ciamosma14l74" path="res://Units/Test Character/Resources/TesteeStatContainer.tres" id="3_q00ex"]
+[ext_resource type="Script" path="res://Units/Test Character/status_effect_handler.gd" id="4_3qgvb"]
+[ext_resource type="Script" path="res://Resources/Ability.gd" id="4_gd1sg"]
 [ext_resource type="Script" path="res://Units/Test Character/attack_handler.gd" id="4_l2doe"]
+[ext_resource type="Resource" uid="uid://dd612ft8u18mp" path="res://Units/Test Character/Abilities/Basic Ability 1/Ability1.tres" id="5_0036a"]
+[ext_resource type="Script" path="res://Units/Test Character/ability_handler.gd" id="6_1x1ds"]
 [ext_resource type="Script" path="res://Units/Test Character/state_machine.gd" id="6_hg2vk"]
 [ext_resource type="Script" path="res://Units/Test Character/idle.gd" id="7_ssa2q"]
+[ext_resource type="Script" path="res://Units/Test Character/ability_1.gd" id="12_2f3mm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mnwy1"]
 
@@ -17,7 +22,7 @@ step = 0.0166667
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackHandler")
+tracks/0/path = NodePath("Handlers/AttackHandler")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -116,6 +121,7 @@ collision_mask = 0
 script = ExtResource("1_v6xjs")
 baseStats = ExtResource("2_rm1jp")
 stats = ExtResource("3_q00ex")
+abilityArray = Array[ExtResource("4_gd1sg")]([ExtResource("5_0036a")])
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.1
@@ -126,11 +132,22 @@ debug_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986698, 0)
 shape = SubResource("CapsuleShape3D_mnwy1")
 
-[node name="AttackHandler" type="Node" parent="."]
+[node name="Handlers" type="Node" parent="."]
+
+[node name="StatusEffectHandler" type="Node" parent="Handlers"]
+unique_name_in_owner = true
+script = ExtResource("4_3qgvb")
+
+[node name="AttackHandler" type="Node" parent="Handlers"]
+unique_name_in_owner = true
 script = ExtResource("4_l2doe")
 
-[node name="BasicAttackTimer" type="Timer" parent="AttackHandler"]
+[node name="BasicAttackTimer" type="Timer" parent="Handlers/AttackHandler"]
 one_shot = true
+
+[node name="AbilityHandler" type="Node" parent="Handlers"]
+unique_name_in_owner = true
+script = ExtResource("6_1x1ds")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -147,8 +164,12 @@ transform = Transform3D(0.38482, 0, 0, 0, 0.38482, 0, 0, 0, 0.38482, 0, 0.6, -0.
 texture = ExtResource("2_3adnv")
 
 [node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("6_hg2vk")
 INITIAL_STATE = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("7_ssa2q")
+
+[node name="Ability1" type="Node" parent="StateMachine"]
+script = ExtResource("12_2f3mm")

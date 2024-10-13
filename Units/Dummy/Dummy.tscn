@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dag6xo83vqfhe" path="res://icon.svg" id="1_kg8r7"]
 [ext_resource type="Script" path="res://Units/Dummy/dummy.gd" id="1_xu1bv"]
-[ext_resource type="Material" uid="uid://btblqt8k2vbrk" path="res://Resources/RedOutline.tres" id="2_dg4nh"]
+[ext_resource type="Material" uid="uid://btblqt8k2vbrk" path="res://Units/Test Character/Resources/RedOutline.tres" id="2_dg4nh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0smg6"]
 radius = 0.640353

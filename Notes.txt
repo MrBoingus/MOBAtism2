@@ -1,10 +1,5 @@
 Currently working on:
-	Selection Radius?
+	Added basic ability system and one ability.
 
 *moved player collision box cause it was the ground for some reason.
 will see if this causes problems.
-
-NOTE: Characters in League with an identical search radius and
-attack range will sometimes target enemies slightly outside of their
-attack radius because every character has a selection hitbox of sorts
-that can make them larger than their model appears.

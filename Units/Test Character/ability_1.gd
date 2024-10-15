@@ -19,6 +19,8 @@ func enter():
 		pos.y = 0
 		player.look_at(pos)
 	
+	spawn.creator = player
+	
 	add_child(spawn)
 	player.abilityHandler.basicAbilityTimer_1.start()
 	#player.abilityHandler.timers[1].start()

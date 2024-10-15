@@ -1,7 +1,11 @@
 extends Projectile
 
+@onready var creator
+
 @onready var lifetime = 0
 @onready var maxLifetime = 40
+
+@onready var damage = 200
 
 @onready var speed = 35
 

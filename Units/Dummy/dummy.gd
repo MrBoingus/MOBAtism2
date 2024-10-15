@@ -5,7 +5,7 @@ var health = 550
 var lastAttacker
 var experienceValue = 50
 
-@onready var hurtbox = $Hurtbox
+@onready var hurtbox: DummyHurtbox = $Hurtbox
 @onready var handlers = $Handlers.get_children()
 @onready var healthHandler = $Handlers/HealthHandler
 

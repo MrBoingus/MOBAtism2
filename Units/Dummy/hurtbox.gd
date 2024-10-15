@@ -1,4 +1,5 @@
 extends Area3D
+class_name DummyHurtbox
 
 @onready var dummy : Dummy
 

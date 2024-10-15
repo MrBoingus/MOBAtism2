@@ -31,7 +31,5 @@ func AssignAbilities():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ability1"):
-		print($BasicAbility1.time_left)
-		print(player.canAttack)
 		if timers[1].is_stopped() and player.canAttack:
 			player.stateMachine.changeState(currentAbilities[1].name)

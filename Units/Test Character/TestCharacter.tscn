@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://htnbw4b1jil0"]
+[gd_scene load_steps=21 format=3 uid="uid://htnbw4b1jil0"]
 
 [ext_resource type="Script" path="res://Units/Test Character/TestCharacter.gd" id="1_v6xjs"]
 [ext_resource type="Texture2D" uid="uid://dag6xo83vqfhe" path="res://icon.svg" id="2_3adnv"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Units/Test Character/attack_handler.gd" id="4_l2doe"]
 [ext_resource type="Resource" uid="uid://dd612ft8u18mp" path="res://Units/Test Character/Abilities/Basic Ability 1/Ability1.tres" id="5_0036a"]
 [ext_resource type="Script" path="res://Units/Test Character/ability_handler.gd" id="6_1x1ds"]
-[ext_resource type="Script" path="res://Resources/Hitbox.gd" id="6_6b5ja"]
 [ext_resource type="Script" path="res://Units/Test Character/state_machine.gd" id="6_hg2vk"]
 [ext_resource type="Script" path="res://Units/Test Character/idle.gd" id="7_ssa2q"]
 [ext_resource type="Script" path="res://Units/Test Character/ability_1.gd" id="12_2f3mm"]
@@ -17,8 +16,10 @@
 [sub_resource type="Resource" id="Resource_1owo3"]
 script = ExtResource("4_gd1sg")
 name = "Passive"
+abilityType = 0
 cooldown = 10.0
-hitboxes = Array[ExtResource("6_6b5ja")]([])
+hitboxes = Array[PackedScene]([])
+projectiles = Array[PackedScene]([])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mnwy1"]
 

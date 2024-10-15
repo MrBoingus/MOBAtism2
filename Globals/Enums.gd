@@ -1,5 +1,5 @@
 extends Node
-class_name Enums
+#class_name Enum
 ## A list of enumerators that will probably be commonly referenced.
 
 ## Which "team" this unit belongs to.
@@ -25,4 +25,10 @@ enum statusEffectType {
 	STATUS,
 	BUFF,
 	DEBUFF,
+}
+
+enum abilityType {
+	TARGET,
+	PROJECTILE,
+	AREA,
 }

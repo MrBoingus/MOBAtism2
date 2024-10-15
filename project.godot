@@ -29,6 +29,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Layers="*res://Globals/Layers.gd"
+Enums="*res://Globals/Enums.gd"
 
 [display]
 

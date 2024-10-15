@@ -1,5 +1,5 @@
 Currently working on:
-	Give ability hitbox
+	Make ability do damage
 
 *moved player collision box cause it was the ground for some reason.
 will see if this causes problems.

@@ -1,24 +1,22 @@
 extends CharacterBody3D
 class_name Dummy
 
-@onready var mesh : MeshInstance3D = $MeshInstance3D
-@export var outlineMaterial : Material
-
 var health = 550
 var lastAttacker
 var experienceValue = 50
+
+@onready var hurtbox = $Hurtbox
+@onready var handlers = $Handlers.get_children()
+@onready var healthHandler = $Handlers/HealthHandler
+
+@onready var mesh : MeshInstance3D = $MeshInstance3D
+@export var outlineMaterial : Material
 
 func _physics_process(delta: float) -> void:
 	pass
 
 func GetHit(attacker:TestCharacter, damage:float):
-	health -= damage
-	lastAttacker = attacker
-	
-	if health <= 0:
-		queue_free()
-		lastAttacker.target = null
-		lastAttacker.ReceiveExperience(experienceValue)
+	hurtbox.GetHit(attacker, damage)
 
 func _on_mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

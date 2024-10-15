@@ -1,8 +1,11 @@
 extends Resource
 class_name Ability
 
-@export var name : String
+@export var name: String
 
-@export var hitboxes : Array[Hitbox]
+@export var cooldown: float
+#@export var cooldownBase: float
+#@export var cooldownCurrent: float
+#@export var affectedByCooldownReduction: bool
 
-@export var customScript : Script
+@export var hitboxes: Array[Hitbox]

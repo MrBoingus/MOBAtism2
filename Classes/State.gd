@@ -4,7 +4,7 @@ class_name State
 
 # Basic State class.
 
-@onready var player : Character
+@onready var player : TestCharacter 
 @onready var hurtbox
 @onready var stateMachine : StateMachine
 #@onready var inputMonitor : InputMonitor
@@ -15,28 +15,6 @@ class_name State
 var attackDuration : int
 
 var bufferAttack : bool = false
-
-var movementEnabled : bool
-var jumpAllowed : bool
-var platformDropAllowed : bool
-var ledgeGrabAllowed : bool
-
-enum States {
-	Idle,
-	Crouch,
-	Dash,
-	DashTurn,
-	DashStop,
-	Run,
-	Block,
-	BlockDrop,
-	Jumpstart,
-	ShortJump,
-	FullJump,
-	Airborne,
-	Airjump,
-	Land,
-}
 
 func handle_input(_event: InputEvent):
 	pass

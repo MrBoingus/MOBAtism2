@@ -1,5 +1,5 @@
 Currently working on:
-	Added basic ability system and one ability.
+	Give ability cooldown
 
 *moved player collision box cause it was the ground for some reason.
 will see if this causes problems.

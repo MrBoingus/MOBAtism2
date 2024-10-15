@@ -7,4 +7,4 @@ class_name StateConnector
 func _ready() -> void:
 	await owner.ready
 	assert(owner != null)
-	player = owner as Character
+	player = owner as TestCharacter

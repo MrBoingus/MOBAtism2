@@ -2,6 +2,8 @@ extends Node
 class_name TesteeAbilityHandler
 
 @onready var player : TestCharacter
+@onready var timers
+@onready var basicAbilityTimer_1: Timer = $BasicAbility1
 
 ## The actual abilities currently available on the Ability Bar.
 ## Will change for multiple reasons such as: leveling up or
@@ -15,11 +17,21 @@ func _ready() -> void:
 	player = owner
 	
 	currentAbilities.resize(5)
+	timers = get_children()
 	AssignAbilities()
 
 func AssignAbilities():
-	currentAbilities[0] = player.abilityArray[0]
+	var index = 0
+	
+	for a in player.abilityArray:
+		currentAbilities[index] = player.abilityArray[index]
+		timers[index].wait_time = player.abilityArray[index].cooldown
+		
+		index += 1
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ability1"):
-		if player.canAttack: player.stateMachine.changeState(currentAbilities[0].name)
+		print($BasicAbility1.time_left)
+		print(player.canAttack)
+		if timers[1].is_stopped() and player.canAttack:
+			player.stateMachine.changeState(currentAbilities[1].name)

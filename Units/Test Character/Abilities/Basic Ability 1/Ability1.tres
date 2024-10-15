@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_8unut")
 name = "Ability1"
+cooldown = 6.0
 hitboxes = Array[ExtResource("1_oonsa")]([])

@@ -1,9 +1,9 @@
-extends Node3D
+extends CharacterBody3D
 
 @onready var lifetime = 0
 @onready var maxLifetime = 40
 
-@onready var speed = -35
+@onready var speed = 35
 
 func _ready() -> void:
 	print_debug("ability spawned")
@@ -14,4 +14,5 @@ func _process(delta: float) -> void:
 	if lifetime >= maxLifetime:
 		queue_free()
 	else:
-		position.x += speed * delta
+		velocity = -transform.basis.z * speed
+		move_and_slide()

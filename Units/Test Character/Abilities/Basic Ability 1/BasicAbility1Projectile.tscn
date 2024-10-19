@@ -6,9 +6,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_7ur7p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x1ikb"]
-radius = 0.520513
+radius = 0.750353
 
 [sub_resource type="SphereMesh" id="SphereMesh_avpbs"]
+radius = 0.7
+height = 1.4
 
 [node name="BasicAbility1Projectile" type="CharacterBody3D"]
 collision_layer = 16

@@ -1,5 +1,6 @@
 Currently working on:
 	Make minion
+	allow minion to be hit by Q
 
 *moved player collision box cause it was the ground for some reason.
 will see if this causes problems.

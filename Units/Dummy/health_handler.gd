@@ -3,7 +3,7 @@ extends Node
 @onready var dummy : Dummy
 
 func _ready() -> void:
-	await owner
+	await owner.ready
 	dummy = owner
 
 func TakeDamage(damage : float):

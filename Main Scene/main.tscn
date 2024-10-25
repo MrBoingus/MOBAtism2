@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://bb2okotlrybrj"]
+[gd_scene load_steps=27 format=4 uid="uid://bb2okotlrybrj"]
 
 [ext_resource type="Script" path="res://Main Scene/main.gd" id="1_3nylv"]
 [ext_resource type="Script" path="res://Main Scene/CameraController.gd" id="2_jmafu"]
 [ext_resource type="PackedScene" uid="uid://htnbw4b1jil0" path="res://Units/Test Character/TestCharacter.tscn" id="2_plbi0"]
 [ext_resource type="PackedScene" uid="uid://cuo2pgds5g5f6" path="res://Units/Dummy/Dummy.tscn" id="3_lrbt8"]
 [ext_resource type="Texture2D" uid="uid://b1oi5xandbl1v" path="res://Assets (Unsorted)/Map/League_Map.jpg" id="4_66ofm"]
+[ext_resource type="PackedScene" uid="uid://vmnd8u5l6t6k" path="res://Classes/Minions/meleeMinion.tscn" id="4_p2bxd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sjv4y"]
 _surfaces = [{
@@ -106,6 +107,9 @@ transform = Transform3D(-0.998841, 0, -0.0481349, 0, 1, 0, 0.0481349, 0, -0.9988
 
 [node name="Dummy" parent="Units" instance=ExtResource("3_lrbt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83463, 0, 0)
+
+[node name="MeleeMinion" parent="Units" instance=ExtResource("4_p2bxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9659, 0.539935, 0)
 
 [node name="World" type="Node" parent="."]
 
@@ -272,5 +276,8 @@ fov = 45.0
 [node name="Timer" type="Timer" parent="Players/CameraControl"]
 wait_time = 0.08
 one_shot = true
+
+[node name="MeleeMinion" parent="." instance=ExtResource("4_p2bxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0310646, 0.605313, 1.77219)
 
 [connection signal="timeout" from="Players/CameraControl/Timer" to="Players/CameraControl" method="_on_timer_timeout"]

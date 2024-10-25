@@ -15,8 +15,9 @@ func _ready() -> void:
 # Below code is basically only for targeted attacks.
 func DeclareAttack(_creator, _victim, _attack):
 	if player.global_position.distance_to(player.target.global_position) <= player.baseStats.baseAttackRange:
-		player.target.GetHit(player, player.baseStats.baseAttackDamage)
-		attackTimer.start()
+		if player.target and player.target.has_method("GetHit"):
+			player.target.GetHit(player, player.baseStats.baseAttackDamage)
+			attackTimer.start()
 		
 
 #NOTE: Basic attack timer should be equal to 1/attack speed , like so:

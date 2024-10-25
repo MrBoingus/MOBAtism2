@@ -6,6 +6,6 @@
 script = ExtResource("2_8unut")
 name = "Ability1"
 abilityType = 1
-cooldown = 6.0
+cooldown = 0.5
 hitboxes = Array[PackedScene]([])
 projectiles = Array[PackedScene]([])

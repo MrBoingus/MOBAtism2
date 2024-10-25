@@ -7,6 +7,7 @@ script = ExtResource("1_ayhhp")
 currentLevel = 1
 experience = 0
 requiredExperience = 0
+currentGold = 0
 movementSpeed = 0
 health = 0
 maxHealth = 0.0

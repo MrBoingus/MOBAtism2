@@ -1,5 +1,5 @@
 Currently working on:
-	Make ability do damage
+	Make minion
 
 *moved player collision box cause it was the ground for some reason.
 will see if this causes problems.

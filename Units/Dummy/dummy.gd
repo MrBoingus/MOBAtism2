@@ -21,9 +21,7 @@ func GetHit(attacker:TestCharacter, damage:float):
 func _on_mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	mesh.material_overlay = outlineMaterial
-	
 
 func _on_mouse_exited() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	mesh.material_overlay = null
-	

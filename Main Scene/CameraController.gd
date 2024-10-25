@@ -160,8 +160,18 @@ func GetCameraCollision():
 	ray.set_collision_mask(pow(2, layer - 1))
 	var rayAttack = get_world_3d().direct_space_state.intersect_ray(ray)
 	
-	if rayAttack:
+	layer = 7
+	ray.set_collision_mask(pow(2, layer - 1))
+	var rayTest = get_world_3d().direct_space_state.intersect_ray(ray)
+	
+	if rayAttack and rayTest:
 		pairedUnit.target = rayAttack.collider
+		pairedUnit.searching = false
+	elif rayAttack:
+		pairedUnit.target = rayAttack.collider
+		pairedUnit.searching = false
+	elif rayTest:
+		pairedUnit.target = rayTest.collider
 		pairedUnit.searching = false
 	elif rayWorld:
 		print_debug("hit the ground")
@@ -170,7 +180,7 @@ func GetCameraCollision():
 		pairedUnit.searching = false
 		pairedUnit.target = null
 	else:
-		print_debug("No intersection")
+		print_debug("No collision detected.")
 
 func AttackMoveLogic():
 	Input.set_default_cursor_shape(Input.CURSOR_FORBIDDEN)
@@ -203,12 +213,12 @@ func AttackMoveLogic():
 		var shapeCast = CreateAttackArea(rayWorld)
 		
 		# Check if an enemy was found around the player's MOUSE.
-		if !AttackAreaColliding(shapeCast, 2):
+		if !AttackAreaColliding(shapeCast, [2, 7]):
 			attackArea.global_position = rayWorld.position # For debugging
 			
 			# If not, check if an enemy is around the PLAYER.
 			shapeCast.global_position = pairedUnit.global_position
-			if !AttackAreaColliding(shapeCast, 2):
+			if !AttackAreaColliding(shapeCast, [2, 7]):
 				# If still no enemy found, move player and set them to SEARCH MODE.
 				shapeCast.queue_free()
 				
@@ -231,17 +241,17 @@ func CreateAttackArea(rayWorld):
 	
 	return shapeCast
 
-func AttackAreaColliding(shapeCast, layer):
-	shapeCast.set_collision_mask(pow(2, layer - 1))
+func AttackAreaColliding(shapeCast:ShapeCast3D, layers:Array):
+	shapeCast.set_collision_mask(0)
+	for l in layers:
+		shapeCast.set_collision_mask_value(l, true)
 	shapeCast.force_shapecast_update()
 	
 	if shapeCast.collision_result:
 		print("found enemy through area")
 		
 		var enemy = shapeCast.collision_result[0]
-		#pairedUnit.nav.target_position = enemy.collider.global_position
 		pairedUnit.target = enemy.collider
-		#pairedUnit.wantsToMove = true
 		pairedUnit.searching = false
 	
 		shapeCast.queue_free()

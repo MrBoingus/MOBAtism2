@@ -132,6 +132,9 @@ ability1={
 3d_physics/layer_2="Team 2 Player"
 3d_physics/layer_3="Neutral"
 3d_physics/layer_4="Floor"
+3d_physics/layer_5="Team 2 Hurtbox"
+3d_physics/layer_6="Team 1 Minion"
+3d_physics/layer_7="Team 2 Minion"
 
 [navigation]
 

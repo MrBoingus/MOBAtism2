@@ -8,6 +8,9 @@ class_name CharacterStatContainer
 @export var experience : int  ## Current amount of experience.
 @export var requiredExperience : int  ## Experience required to level up.
 
+@export_group("Gold")
+@export var currentGold : int
+
 @export_group("Movement")
 @export var movementSpeed : int  ## Current movement speed.
 

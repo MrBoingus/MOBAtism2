@@ -6,7 +6,7 @@ class_name TestCharacter
 #region Variables
 var speed : int = 350  ## Default movement speed value.
 
-var target : Dummy
+var target
 
 var stateDuration
 var previousState
@@ -21,6 +21,10 @@ var nextPosition = Vector3()  ## The next navigation path position will be store
 
 # Flags
 var searching : bool
+
+var node
+func DeleteNode():
+	if node: node.queue_free()
 
 #endregion
 
@@ -142,6 +146,8 @@ func SearchForEnemy():
 		shapeCast.queue_free()
 
 func FollowTarget():
+	if !target: return
+	
 	if global_position.distance_to(target.global_position) > baseStats.baseAttackRange:
 		nav.target_position = target.global_position
 		wantsToMove = true

@@ -3,6 +3,10 @@ class_name Hitbox
 
 @onready var projectile
 
+@export var appliesEffect : bool
+#@export var effect = GlobalDictionary
+@export var effects : Array[StatusEffect]
+
 func _ready() -> void:
 	await owner.ready
 	projectile = owner

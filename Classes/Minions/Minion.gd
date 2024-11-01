@@ -34,8 +34,8 @@ func _on_mouse_exited() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	mesh.material_overlay = null
 
-func GetHit(attacker:TestCharacter, damageTaken:float):
-	hurtbox.GetHit(attacker, damageTaken)
+func GetHit(attacker:TestCharacter, damageTaken:float, effect:StatusEffect):
+	hurtbox.GetHit(attacker, damageTaken, effect)
 
 func Die(killer:TestCharacter):
 	queue_free()

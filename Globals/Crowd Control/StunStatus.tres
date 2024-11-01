@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://bhikjdbhttxws"]
+
+[ext_resource type="Script" path="res://Resources/StatusEffect.gd" id="1_5mfb0"]
+
+[resource]
+script = ExtResource("1_5mfb0")
+visible = true
+leftDisplay = false
+statusName = "GlobalStun"
+statusType = 2
+duration = 1.0
+crowdControl = true
+crowdControlType = 1

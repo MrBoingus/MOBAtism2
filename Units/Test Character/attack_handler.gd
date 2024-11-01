@@ -16,7 +16,7 @@ func _ready() -> void:
 func DeclareAttack(_creator, _victim, _attack):
 	if player.global_position.distance_to(player.target.global_position) <= player.baseStats.baseAttackRange:
 		if player.target and player.target.has_method("GetHit"):
-			player.target.GetHit(player, player.baseStats.baseAttackDamage)
+			player.target.GetHit(player, player.baseStats.baseAttackDamage, null)
 			attackTimer.start()
 		
 

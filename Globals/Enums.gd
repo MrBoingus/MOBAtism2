@@ -37,6 +37,12 @@ enum statusEffectType {
 	DEBUFF,
 }
 
+enum crowdControlType {
+	SLOW,
+	STUN,
+	KNOCKUP,
+}
+
 enum abilityType {
 	TARGET,
 	PROJECTILE,

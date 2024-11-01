@@ -1,6 +1,12 @@
 Currently working on:
-	Make minion
-	allow minion to be hit by Q
+	
+
+BUFFS AND DEBUFFS WILL NEED HEAVY REVISITING LATER.
+- perhaps we should make status effects that can possibly
+	apply crowd control effects. 2 resources
+- add node child and assign it debuff script?
+- add all debuffs to a global list, have something check if any are true,
+	and do something if they are?
 
 *moved player collision box cause it was the ground for some reason.
 will see if this causes problems.

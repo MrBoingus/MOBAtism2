@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://kx022t1f3m0w"]
+
+[ext_resource type="Script" path="res://Resources/StatusEffect.gd" id="1_l4lt8"]
+
+[resource]
+script = ExtResource("1_l4lt8")
+visible = true
+leftDisplay = false
+statusName = "GlobalSlow"
+statusType = 2
+duration = 2.0
+crowdControl = true
+crowdControlType = 0

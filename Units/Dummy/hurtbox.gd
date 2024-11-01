@@ -7,6 +7,10 @@ func _ready() -> void:
 	await owner.ready
 	dummy = owner
 
-func GetHit(attacker:TestCharacter, damage:float):
+func GetHit(attacker:TestCharacter, damage:float, effect:StatusEffect):
+	if effect:
+		#dummy.statusEffectHandler.AddStatusEffect(effect)
+		dummy.crowdControlHandler.ApplyCrowdControl(effect.duration)
+	
 	dummy.lastAttacker = attacker
 	dummy.healthHandler.TakeDamage(damage)

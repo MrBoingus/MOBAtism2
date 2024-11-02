@@ -12,10 +12,15 @@ var speed = 50
 @onready var healthHandler = $Handlers/HealthHandler
 @onready var statusEffectHandler: DummyStatusEFfectHandler = $Handlers/StatusEffectHandler
 @onready var crowdControlHandler: DummyCrowdControlHandler = $Handlers/CrowdControlHandler
-
+@onready var healthBar: ProgressBar = %Health
+@onready var manaBar: ProgressBar = %Mana
 
 @onready var mesh : MeshInstance3D = $MeshInstance3D
 @export var outlineMaterial : Material
+
+func _ready() -> void:
+	healthHandler.healthBar = healthBar
+	healthHandler.manaBar = manaBar
 
 func _physics_process(delta: float) -> void:
 	pass

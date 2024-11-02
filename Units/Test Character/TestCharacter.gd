@@ -35,6 +35,8 @@ func DeleteNode():
 @onready var statusEffectHandler: TesteeStatusEffectHandler = %StatusEffectHandler
 @onready var abilityHandler: TesteeAbilityHandler = %AbilityHandler
 @onready var stateMachine: TesteeStateMachine = %StateMachine
+@onready var levelUI: Label = %Level
+
 
 
 #endregion
@@ -174,6 +176,8 @@ func IncreaseLevel():
 		pass
 	else:
 		stats.experience = 0
+		stats.currentLevel += 1
+		levelUI.text = str(stats.currentLevel)
 		print_debug("leveled up!")
 
 #region Connections To External Functions

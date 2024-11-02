@@ -30,6 +30,7 @@ config/icon="res://icon.svg"
 
 Layers="*res://Globals/Layers.gd"
 Enums="*res://Globals/Enums.gd"
+Overseer="*res://Globals/Overseer.gd"
 
 [display]
 

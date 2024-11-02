@@ -1,6 +1,8 @@
 Currently working on:
 	UI
 
+How to scale UI so it is clear at all distances?
+
 BUFFS AND DEBUFFS WILL NEED HEAVY REVISITING LATER.
 - perhaps we should make status effects that can possibly
 	apply crowd control effects. 2 resources

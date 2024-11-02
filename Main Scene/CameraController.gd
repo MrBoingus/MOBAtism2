@@ -47,6 +47,7 @@ var zoomDirection : float = 0.0
 
 func _ready() -> void:
 	$AttackArea/CollisionShape3D.shape.radius = pairedUnit.baseStats.baseAttackRange
+	Overseer.UpdateCurrentCamera(camera)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -262,6 +263,8 @@ func AttackAreaColliding(shapeCast:ShapeCast3D, layers:Array):
 		
 		return false
 
+#func RotateUI():
+	#camera.unproject_position()
 
 func _on_timer_timeout() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

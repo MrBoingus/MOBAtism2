@@ -280,4 +280,6 @@ one_shot = true
 [node name="MeleeMinion" parent="." instance=ExtResource("4_p2bxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0310646, 0.605313, 1.77219)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [connection signal="timeout" from="Players/CameraControl/Timer" to="Players/CameraControl" method="_on_timer_timeout"]

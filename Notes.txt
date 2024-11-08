@@ -2,6 +2,7 @@ Currently working on:
 	UI
 
 How to scale UI so it is clear at all distances?
+A: Presumably, we will scale it with the Camera Zoom level
 
 BUFFS AND DEBUFFS WILL NEED HEAVY REVISITING LATER.
 - perhaps we should make status effects that can possibly

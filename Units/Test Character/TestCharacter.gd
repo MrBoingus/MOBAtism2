@@ -37,6 +37,8 @@ func DeleteNode():
 @onready var stateMachine: TesteeStateMachine = %StateMachine
 @onready var levelUI: Label = %Level
 
+@onready var spellBar: HBoxContainer = %"Spell Bar"
+@onready var abilityTimer1 : Label = %Label1
 
 
 #endregion

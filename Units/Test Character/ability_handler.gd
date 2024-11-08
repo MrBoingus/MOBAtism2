@@ -20,6 +20,10 @@ func _ready() -> void:
 	timers = get_children()
 	AssignAbilities()
 
+func _process(delta: float) -> void:
+	if basicAbilityTimer_1.time_left > 0:
+		player.abilityTimer1.text = str(snapped(basicAbilityTimer_1.time_left, 0.1))
+
 func AssignAbilities():
 	var index = 0
 	

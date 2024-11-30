@@ -5,7 +5,7 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_ki3b8"]
 top_radius = 1.0
 bottom_radius = 1.0
-height = 20.0
+height = 15.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a684y"]
 radius = 5.0
@@ -17,6 +17,9 @@ viewport_path = NodePath("UI Pivot/Character UI/SubViewport")
 script = ExtResource("1_ua705")
 team = 1
 validTargets = Array[int]([0])
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.25
 
 [node name="RightTower1" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_ki3b8")
@@ -59,3 +62,5 @@ max_value = 550.0
 step = 1.0
 value = 550.0
 show_percentage = false
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]

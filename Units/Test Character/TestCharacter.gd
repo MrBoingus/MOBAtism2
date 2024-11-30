@@ -42,6 +42,8 @@ func DeleteNode():
 @onready var spellBar: HBoxContainer = %"Spell Bar"
 @onready var abilityTimer1 : Label = %Label1
 
+@onready var healthBar : ProgressBar = %Health
+@onready var manaBar : ProgressBar = %Mana
 
 #endregion
 
@@ -76,6 +78,15 @@ func _physics_process(delta: float) -> void:
 	NavigationLogic(delta)
 
 #region Custom Functions
+
+func GetHit(damage):
+	stats.health -= damage
+	healthBar.value = stats.health
+	
+	if stats.health <= 0:
+		queue_free()
+		#lastAttacker.target = null
+		#dummy.lastAttacker.ReceiveExperience(dummy.experienceValue)
 
 ## Basic Navigation and Movement logic meant to run every physics frame.
 # TODO Tre mentioned this in the last project but Godot only allows for 0.1m precision in navigation, for some reason. Code our own LATER?

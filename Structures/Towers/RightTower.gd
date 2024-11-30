@@ -5,7 +5,9 @@ class_name RightTower
 
 @onready var targetArea : Area3D = $TargetArea
 @onready var targetAreaCollision : CollisionShape3D = $TargetArea/CollisionShape3D
+@onready var attackTimer : Timer = $AttackTimer  
 
+@onready var canAttack : bool
 
 func _ready() -> void:
 	super()
@@ -14,6 +16,18 @@ func _ready() -> void:
 	
 	targetArea.body_entered.connect(BodyEnteredAttackArea)
 	targetArea.body_exited.connect(BodyExitedAttackArea)
+	
+	canAttack = true
+
+func _physics_process(delta: float) -> void:
+	if target and canAttack:
+		LaunchAttack()
+		canAttack = false
+		attackTimer.start()
+
+func LaunchAttack():
+	if target.has_method("GetHit"):
+		target.GetHit(currentAttackDamage)
 
 func BodyEnteredAttackArea(body : Node3D):
 	if "alliance" in body:
@@ -41,3 +55,6 @@ func BodyExitedAttackArea(body : Node3D):
 		# If TEAMMATE
 		elif body.alliance == team:
 			nearbyCharacters.erase(body)
+
+func _on_timer_timeout() -> void:
+	canAttack = true

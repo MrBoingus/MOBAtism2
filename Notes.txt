@@ -1,8 +1,9 @@
 Currently working on:
-	Added Tower class, RightTower scene, and gave the RightTower
-	code to determine if an enemy has entered its targeting area,
-	add that enemy to a list of nearby enemies, and remove the 
-	enemy from the list when they leave.
+	Added Tower Attack
+changed height of tower (shorter)
+increased maximum zoom range (25 -> 30)
+
+league attack speed converter: 1/attack speed = timer value
 
 How to scale UI so it is clear at all distances?
 A: Presumably, we will scale it with the Camera Zoom level

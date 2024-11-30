@@ -24,7 +24,7 @@ var zoomDirection : float = 0.0
 ## The speed at which the camera changes zoom level.
 @export_range(0,100,1) var zoomSpeed : float = 40.0
 @export_range(0,100,1) var zoomMin : float = 10.0  ## The minimum zoom distance.
-@export_range(0,100,1) var zoomMax : float = 25.0  ## The maximum zoom distance.
+@export_range(0,100,1) var zoomMax : float = 30.0  ## The maximum zoom distance.
 ## Basically acts as friction for the camera when zooming, I think. Causes it to slow down gradually.
 @export_range(0,2,0.1) var zoomSpeedDamp : float = 0.92
 
@@ -113,7 +113,7 @@ func Camera_Zoom_Update(delta : float) -> void:
 	if !canZoom: return
 	
 	var newZoom : float = camera.position.z + zoomSpeed * zoomDirection * delta
-	camera.position.z =clampf(newZoom, zoomMin, zoomMax)
+	camera.position.z = clampf(newZoom, zoomMin, zoomMax)
 	zoomDirection *= zoomSpeedDamp
 
 ## Pans the camera in a direction based on the location of the mouse in the viewport.

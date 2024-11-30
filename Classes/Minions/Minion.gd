@@ -39,6 +39,8 @@ func GetHit(attacker:TestCharacter, damageTaken:float, effect:StatusEffect):
 
 func Die(killer:TestCharacter):
 	queue_free()
-	if "experience" in killer and "currentGold" in killer:
-		killer.experience += experienceValue
-		killer.currentGold += goldValue
+	if "stats" in killer:
+		if "experience" in killer.stats:
+			killer.ReceiveExperience(experienceValue)
+		if "currentGold" in killer.stats:
+			killer.stats.currentGold += goldValue

@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqrn511lcrqn7"]
+
+[ext_resource type="Script" path="res://Structures/Towers/RightTower.gd" id="1_ua705"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ki3b8"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 20.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a684y"]
+radius = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pu3jm"]
+viewport_path = NodePath("UI Pivot/Character UI/SubViewport")
+
+[node name="RightTower" type="Node3D"]
+script = ExtResource("1_ua705")
+team = 1
+validTargets = Array[int]([0])
+
+[node name="RightTower1" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_ki3b8")
+
+[node name="TargetArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetArea"]
+shape = SubResource("SphereShape3D_a684y")
+
+[node name="UI Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.331815, -0.943344, 0, 0.943344, 0.331815, 0, 10.7455, 0)
+
+[node name="Character UI" type="Sprite3D" parent="UI Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68085, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_pu3jm")
+
+[node name="SubViewport" type="SubViewport" parent="UI Pivot/Character UI"]
+canvas_item_default_texture_filter = 0
+size = Vector2i(450, 50)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Pivot/Character UI/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Health" type="ProgressBar" parent="UI Pivot/Character UI/SubViewport/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.0705882, 0.239216, 1)
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 550.0
+step = 1.0
+value = 550.0
+show_percentage = false

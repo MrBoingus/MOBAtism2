@@ -1,8 +1,14 @@
 Currently working on:
-	UI
+	Added Tower class, RightTower scene, and gave the RightTower
+	code to determine if an enemy has entered its targeting area,
+	add that enemy to a list of nearby enemies, and remove the 
+	enemy from the list when they leave.
 
 How to scale UI so it is clear at all distances?
 A: Presumably, we will scale it with the Camera Zoom level
+
+Added an explanation of the minion wave handler to the
+"wave handler" node.
 
 BUFFS AND DEBUFFS WILL NEED HEAVY REVISITING LATER.
 - perhaps we should make status effects that can possibly

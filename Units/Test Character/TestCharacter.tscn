@@ -25,7 +25,7 @@ projectiles = Array[PackedScene]([])
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mnwy1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e2kro"]
-viewport_path = NodePath("Pivot/Character UI/SubViewport")
+viewport_path = NodePath("UI Pivot/Character UI/SubViewport")
 
 [sub_resource type="Animation" id="Animation_3ebfv"]
 resource_name = "BasicAttack"
@@ -273,20 +273,20 @@ debug_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986698, 0)
 shape = SubResource("CapsuleShape3D_mnwy1")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="UI Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 2, 0)
 script = ExtResource("6_7b8p6")
 
-[node name="Character UI" type="Sprite3D" parent="Pivot"]
+[node name="Character UI" type="Sprite3D" parent="UI Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11638, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_e2kro")
 
-[node name="SubViewport" type="SubViewport" parent="Pivot/Character UI"]
+[node name="SubViewport" type="SubViewport" parent="UI Pivot/Character UI"]
 canvas_item_default_texture_filter = 0
-size = Vector2i(200, 42)
+size = Vector2i(200, 50)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Pivot/Character UI/SubViewport"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Pivot/Character UI/SubViewport"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -297,23 +297,23 @@ size_flags_vertical = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="(Spacing)" type="Label" parent="Pivot/Character UI/SubViewport/HBoxContainer"]
+[node name="(Spacing)" type="Label" parent="UI Pivot/Character UI/SubViewport/HBoxContainer"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="Pivot/Character UI/SubViewport/HBoxContainer"]
+[node name="Level" type="Label" parent="UI Pivot/Character UI/SubViewport/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "1"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pivot/Character UI/SubViewport/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Pivot/Character UI/SubViewport/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="Health" type="ProgressBar" parent="Pivot/Character UI/SubViewport/HBoxContainer/VBoxContainer"]
+[node name="Health" type="ProgressBar" parent="UI Pivot/Character UI/SubViewport/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 0.0705882, 0.239216, 1)
 layout_mode = 2
@@ -323,7 +323,7 @@ step = 1.0
 value = 550.0
 show_percentage = false
 
-[node name="Mana" type="ProgressBar" parent="Pivot/Character UI/SubViewport/HBoxContainer/VBoxContainer"]
+[node name="Mana" type="ProgressBar" parent="UI Pivot/Character UI/SubViewport/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(0, 0.592157, 0.960784, 1)
 layout_mode = 2

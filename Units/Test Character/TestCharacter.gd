@@ -4,6 +4,8 @@ class_name TestCharacter
 ## The front of this character is the negative Z-axis.
 
 #region Variables
+var alliance = Enums.alliance.LEFT
+
 var speed : int = 350  ## Default movement speed value.
 
 var target

@@ -3,7 +3,7 @@ class_name TowerProjectile
 
 @onready var target
 
-@onready var speed = 18
+@onready var speed = 15
 @onready var damage = 100
 
 func _ready() -> void:
@@ -11,7 +11,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if target: look_at(target.global_position)
-	global_position = global_position.move_toward(target.global_position, speed * delta)
+	if "center" in target:
+		global_position = global_position.move_toward(target.center.global_position, speed * delta)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body != target:

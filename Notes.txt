@@ -1,5 +1,7 @@
 Currently working on:
 	Added Ranged Attack to Tower
+	Added a marker node for the center of the character
+	Made tower projectile move towards that
 
 league attack speed converter: 1/attack speed = timer value
 

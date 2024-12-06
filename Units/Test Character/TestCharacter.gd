@@ -45,6 +45,9 @@ func DeleteNode():
 @onready var healthBar : ProgressBar = %Health
 @onready var manaBar : ProgressBar = %Mana
 
+@onready var center: Marker3D = $Center
+
+
 #endregion
 
 #region Resources

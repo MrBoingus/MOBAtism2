@@ -1,7 +1,5 @@
 Currently working on:
-	Added Tower Attack
-changed height of tower (shorter)
-increased maximum zoom range (25 -> 30)
+	Added Ranged Attack to Tower
 
 league attack speed converter: 1/attack speed = timer value
 

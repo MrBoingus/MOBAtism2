@@ -6,8 +6,10 @@ class_name RightTower
 @onready var targetArea : Area3D = $TargetArea
 @onready var targetAreaCollision : CollisionShape3D = $TargetArea/CollisionShape3D
 @onready var attackTimer : Timer = $AttackTimer  
+@onready var attackSpawn : Marker3D = $AttackSpawn
 
 @onready var canAttack : bool
+@onready var attack = preload("res://Structures/Towers/TowerProjectile.tscn")
 
 func _ready() -> void:
 	super()
@@ -26,8 +28,10 @@ func _physics_process(delta: float) -> void:
 		attackTimer.start()
 
 func LaunchAttack():
-	if target.has_method("GetHit"):
-		target.GetHit(currentAttackDamage)
+	var instance = attack.instantiate()
+	add_child(instance)
+	instance.global_position = attackSpawn.global_position
+	instance.target = target
 
 func BodyEnteredAttackArea(body : Node3D):
 	if "alliance" in body:
